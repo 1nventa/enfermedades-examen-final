@@ -1,0 +1,30 @@
+{
+  "name": "enfermedades-examen-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "start": "node src/adapters/api/server.js",
+  "dev": "nodemon src/adapters/api/server.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1nventa/enfermedades-examen-final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1nventa/enfermedades-examen-final/issues"
+  },
+  "homepage": "https://github.com/1nventa/enfermedades-examen-final#readme",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "express": "^5.2.1",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
