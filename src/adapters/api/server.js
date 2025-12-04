@@ -1,13 +1,26 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+
+const sequelize = require("../../infrastructure/sequelize");
+const EnfermedadRepositoryImpl = require("../../infrastructure/sequelize/enfermedadRepositoryImpl");
+const EnfermedadService = require("../../application/services/enfermedadService");
+const crearRouter = require("./routes/enfermedadRoutes");
+
 const app = express();
-const PORT = 3000;
+app.use(bodyParser.json());
 
-app.use(express.json());
+async function init() {
+  await sequelize.sync();
 
-app.get("/", (req, res) => {
-  res.json({ message: "API Enfermedades funcionando correctamente" });
-});
+  const repo = new EnfermedadRepositoryImpl();
+  const service = new EnfermedadService(repo);
+  const router = crearRouter(service);
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+  app.use("/api/enfermedades", router);
+
+  app.listen(3000, () => {
+    console.log("Servidor en http://localhost:3000/api/enfermedades");
+  });
+}
+
+init();
